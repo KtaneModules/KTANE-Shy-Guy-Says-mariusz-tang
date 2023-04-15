@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- saved from url=(0097)file:///C:/Users/mariu/OneDrive/Desktop/ShyGuySaysMeowMeowMotherfucker/HTML/Shy%20Guy%20Says.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="initial-scale=1">
+    <title>Shy Guy Says — Keep Talking and Nobody Explodes Module</title>
+    <link rel="stylesheet" type="text/css" href="./Shy Guy Says — Keep Talking and Nobody Explodes Module_files/font.css">
+    <link rel="stylesheet" type="text/css" href="./Shy Guy Says — Keep Talking and Nobody Explodes Module_files/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./Shy Guy Says — Keep Talking and Nobody Explodes Module_files/main.css">
+    <script src="./Shy Guy Says — Keep Talking and Nobody Explodes Module_files/ktane-utils.js.download"></script><script src="./Shy Guy Says — Keep Talking and Nobody Explodes Module_files/jquery.3.1.1.min.js.download"></script>
+    <style>
+        .dark table, table {
+            margin: 1em auto;
+            border: none;
+            text-align: center;
+            width: 100%;
+        }
+
+        .page-footer::before { content: 'Page '; }
+        .page-footer::after { content: ' of 1'; }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <div class="page page-bg-01">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Shy Guy Says</span>
+            </div>
+            <div class="page-content">
+                <img src="./Shy Guy Says — Keep Talking and Nobody Explodes Module_files/ShyGuySays.svg" class="diagram">
+                <h2>On the Subject of Shy Guy Says</h2>
+                <p class="flavour-text">Hey, you're not Simon!</p>
+
+                <p>
+                    To activate the module, press the Shy Guy in the middle. When activated, a 40 second timer will begin, and the flags will flash a
+                    sequence of 7 flashes, each one a random color (Red, White, Green, or Blue) and with a random letter (A, B, L, or R) on them.
+                </p>
+
+                <p>
+                    Use the flag's colors and letters to determine which of the flags to press. Then, press those flags in order to clear the stage 
+                    before the timer runs out. Press the Shy Guy again after clearing the current stage to begin the next stage. Each sequential 
+                    stage's flashes will flash quicker than the previous stage. Clear all 3 stages to disarm the module.
+                </p>
+
+                <p>
+                    If the timer runs out, an incorrect input is made, or the Shy Guy is pressed during a stage, the module will strike and reset to 
+                    the beginning of the current stage. The Shy Guy will need to be pressed to receive the sequence again.
+                </p>
+
+                <h3>Flag Charts</h3>
+
+                <p>Use the left chart for the left flag, and the right chart for the right flag.</p>
+
+                <table>
+                    <tbody><tr>
+                        <td class="empty nohighlight" style="padding-left: 0%">
+                            <table>
+                                <tbody><tr><td class="corner"></td><td><b>Red</b></td><td><b>White</b></td><td><b>Green</b></td><td><b>Blue</b></td>
+                                </tr><tr><td><b>A</b></td><td>Opp</td><td>O</td><td>X</td><td>Opp</td></tr>
+                                <tr><td><b>B</b></td><td>X</td><td>X</td><td>O</td><td>O</td></tr>
+                                <tr><td><b>L</b></td><td>O</td><td>Opp</td><td>Opp</td><td>X</td></tr>
+                                <tr><td><b>R</b></td><td>O</td><td>X</td><td>X</td><td>Opp</td></tr>
+                            </tbody></table>
+                        </td>
+                        <td class="empty nohighlight" style="padding-right: 0%">
+                            <table>
+                                <tbody><tr><td><b>Blue</b></td><td><b>Green</b></td><td><b>White</b></td><td><b>Red</b></td><td class="corner"></td>
+                                </tr><tr><td>O</td><td>Opp</td><td>O</td><td>X</td><td><b>A</b></td></tr>
+                                <tr><td>X</td><td>X</td><td>Opp</td><td>O</td><td><b>B</b></td></tr>
+                                <tr><td>Opp</td><td>O</td><td>X</td><td>Opp</td><td><b>L</b></td></tr>
+                                <tr><td>O</td><td>Opp</td><td>O</td><td>X</td><td><b>R</b></td></tr>
+                            </tbody></table>
+                        </td>
+                    </tr>
+                </tbody></table>
+
+                <table>
+                    <tbody><tr><td>O = Press this flag.</td><td>X = Skip this flag.</td><td style="width: 36%;">Opp = Press the other flag.</td></tr>
+                </tbody></table>
+            </div>
+            <div class="page-footer relative-footer">1</div>
+        </div>
+    </div>
+
+<div id="notification" style="display: none;"></div><div id="optionsMenu">
+            <h2>Options (Alt-O)</h2>
+            <div class="option-group">
+                <h3>Highlighter</h3>
+                <div><input type="checkbox" id="highlighter-enabled">&nbsp;<label for="highlighter-enabled" accesskey="h">Enabled</label> (Alt-H)</div>
+                <div>Color: <select id="highlighter-color"><option value="0">Gray</option><option value="1" selected="selected">Blue</option><option value="2">Red</option><option value="3">Green</option><option value="4">Yellow</option><option value="5">Magenta</option><option value="6">Orange</option><option value="7">Cyan</option><option value="8">White</option><option value="9">Black</option></select> (Alt-<span id="highlighter-color-index">1</span>)</div>
+                <div>Highlights: <button id="clear-highlights" accesskey="c">Clear</button> (Alt-C)</div>
+            </div>
+            <div class="option-group">
+                <h3>Page layout</h3>
+                <div><input type="radio" name="page-layout" class="page-layout" id="page-layout-vertical">&nbsp;<label for="page-layout-vertical" accesskey="v"><kbd>V</kbd>ertical</label></div>
+                <div><input type="radio" name="page-layout" class="page-layout" id="page-layout-side-by-side">&nbsp;<label for="page-layout-side-by-side" accesskey="s"><kbd>S</kbd>ide by side</label></div>
+            </div>
+            <div class="option-group">
+                <h3>Dark Mode</h3>
+                <div><input type="checkbox" id="dark-mode-enabled">&nbsp;<label for="dark-mode-enabled">Enabled</label> (Alt-W)</div>
+            </div>
+        </div></body></html>
