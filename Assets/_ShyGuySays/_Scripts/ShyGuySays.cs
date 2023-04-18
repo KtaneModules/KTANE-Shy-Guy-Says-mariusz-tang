@@ -11,8 +11,8 @@ public class ShyGuySays : MonoBehaviour {
     [SerializeField] private MainFlag[] _displayFlags;
     [SerializeField] private FlagButton[] _buttonFlags;
     [SerializeField] private ShyGuyButton _centreButton;
+    [SerializeField] private FlagController _display;
 
-    // Use this for initialization
     private void Start() {
         AssignInputHandlers();
     }
@@ -27,25 +27,23 @@ public class ShyGuySays : MonoBehaviour {
     }
 
     private void FlagPress(int position) {
-        _displayFlags[position].Flip(Color.red, 'X');
+        _display.Enqueue(new FlagAction(1, new FlagRaise(position, Color.red, 'X')));
     }
 
     private void FlagRelease(int position) {
-        _displayFlags[position].Unflip();
+
     }
 
     private void CentrePress() {
-        _displayFlags[0].Flip(Color.green, 'A');
-        _displayFlags[1].Flip(Color.blue, 'B');
+        var actions = new FlagRaise[] {
+            new FlagRaise(0, Color.green, 'A'),
+            new FlagRaise(1, Color.blue, 'B')
+        };
+
+        _display.Enqueue(new FlagAction(2, actions), clearExistingActions: true);
     }
 
     private void CentreRelease() {
-        _displayFlags[0].Unflip();
-        _displayFlags[1].Unflip();
-    }
-
-    // Update is called once per frame
-    private void Update() {
 
     }
 }
