@@ -8,13 +8,25 @@ public class ShyGuySays : MonoBehaviour {
     public KMBombInfo Bomb;
     public KMBombModule Module;
 
+    private static int _moduleIdCounter = 0;
+    private int _moduleId;
+
     [SerializeField] private MainFlag[] _displayFlags;
     [SerializeField] private FlagButton[] _buttonFlags;
     [SerializeField] private ShyGuyButton _centreButton;
     [SerializeField] private FlagController _display;
 
+    private readonly FlagRaise[] _strikeRaises = new FlagRaise[] {
+        new FlagRaise(0, Color.red, 'X'),
+        new FlagRaise(1, Color.red, 'X')
+    };
+
+    private StageGenerator _stageGenerator;
+
     private void Start() {
+        _moduleId = _moduleIdCounter++;
         AssignInputHandlers();
+        _stageGenerator = new StageGenerator(this);
     }
 
     private void AssignInputHandlers() {
@@ -27,7 +39,10 @@ public class ShyGuySays : MonoBehaviour {
     }
 
     private void FlagPress(int position) {
-        _display.Enqueue(new FlagAction(1, new FlagRaise(position, Color.red, 'X')));
+        string output;
+        foreach (FlagRaise raise in _stageGenerator.GenerateStage(1, out output)) {
+            _display.Enqueue(new FlagAction(1, raise));
+        }
     }
 
     private void FlagRelease(int position) {
@@ -45,5 +60,15 @@ public class ShyGuySays : MonoBehaviour {
 
     private void CentreRelease() {
 
+    }
+
+    public void Log(string message) {
+        Debug.LogFormat("[Shy Guy Says #{0}] {1}", _moduleId, message);
+    }
+
+    public void Strike(string message) {
+        Module.HandleStrike();
+        Log("✕ " + message);
+        _display.Enqueue(new FlagAction(1, _strikeRaises), clearExistingActions: true);
     }
 }

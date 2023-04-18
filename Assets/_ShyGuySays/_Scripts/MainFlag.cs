@@ -19,8 +19,10 @@ public class MainFlag : MonoBehaviour {
 
     public void Flip(Color colour, char letter) {
         Ready = false;
+        _text.color = colour == Color.white ? Color.white * 0.5f : Color.white;
         _text.text = letter.ToString();
         _displaySide.materials[1].color = colour;
+
         _animator.SetBool("Show", true);
     }
 
