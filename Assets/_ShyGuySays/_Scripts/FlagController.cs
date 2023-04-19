@@ -53,7 +53,15 @@ public class FlagController : MonoBehaviour {
                 _flags[raise.Position].Flip(raise.Colour, raise.Letter, nextAction.Speed);
             }
 
-            yield return new WaitForSeconds(1 / nextAction.Speed);
+            yield return new WaitForSeconds(1 / (2 * nextAction.Speed));
+
+            foreach (FlagRaise raise in nextAction.Raises) {
+                if (raise.IsFake) {
+                    _flags[raise.Position].Unflip();
+                }
+            }
+
+            yield return new WaitForSeconds(1 / (2 * nextAction.Speed));
 
             foreach (FlagRaise raise in nextAction.Raises) {
                 _flags[raise.Position].Unflip();

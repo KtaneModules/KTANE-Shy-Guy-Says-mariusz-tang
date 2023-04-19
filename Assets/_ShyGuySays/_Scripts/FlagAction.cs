@@ -24,13 +24,15 @@ public class FlagAction {
 
 public class FlagRaise {
 
-    public FlagRaise(int position, Color colour, char letter) {
+    public FlagRaise(int position, Color colour, char letter, bool isFake = false) {
         Position = position;
         Colour = colour;
         Letter = letter;
+        IsFake = isFake;
     }
 
     public int Position { get; private set; }
     public Color Colour { get; private set; }
     public char Letter { get; private set; }
+    public bool IsFake { get; private set; }
 }

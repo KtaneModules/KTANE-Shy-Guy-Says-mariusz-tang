@@ -82,4 +82,11 @@ public class StageGenerator {
         return displayFlags;
     }
 
+    public FlagRaise GetRandomFakeFlag(int position) {
+        int colourIndex = Rnd.Range(0, 4);
+        int letterIndex = Rnd.Range(0, 4);
+
+        return new FlagRaise(position, _colours[colourIndex], _letters[letterIndex], true);
+    }
+
 }
