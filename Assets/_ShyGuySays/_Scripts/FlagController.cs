@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class FlagController : MonoBehaviour {
 
+    [SerializeField] private KMSelectable _colourblindButton;
     [SerializeField] private MainFlag[] _flags;
 
     private ShyGuySays _module;
@@ -20,6 +21,12 @@ public class FlagController : MonoBehaviour {
         if (_flags.Length != 2) {
             throw new RankException("Is you man a bit stupid?");
         }
+
+        _colourblindButton.OnInteract += delegate () {
+            _flags[0].ColourblindModeActive = !_flags[0].ColourblindModeActive;
+            _flags[1].ColourblindModeActive = !_flags[1].ColourblindModeActive;
+            return false;
+        };
     }
 
     private void Update() {
@@ -34,6 +41,10 @@ public class FlagController : MonoBehaviour {
         }
 
         _queue.Enqueue(action);
+    }
+
+    public void ToggleColourblindMode() {
+
     }
 
     public void StopQueue() {

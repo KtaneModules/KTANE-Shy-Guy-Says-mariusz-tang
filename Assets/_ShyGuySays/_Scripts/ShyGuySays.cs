@@ -13,7 +13,6 @@ public class ShyGuySays : MonoBehaviour {
     private static int _moduleIdCounter = 0;
     private int _moduleId;
 
-    [SerializeField] private MainFlag[] _displayFlags;
     [SerializeField] private FlagButton[] _buttonFlags;
     [SerializeField] private ShyGuyButton _centreButton;
     [SerializeField] private FlagController _display;
@@ -91,6 +90,8 @@ public class ShyGuySays : MonoBehaviour {
         _actualInput = string.Empty;
         _activeStage = true;
     }
+
+
 
     public FlagAction[] GenerateActions(FlagRaise[] raises) {
         var actions = new FlagAction[7];
