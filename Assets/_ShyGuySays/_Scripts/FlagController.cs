@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FlagController : MonoBehaviour {
@@ -9,6 +10,7 @@ public class FlagController : MonoBehaviour {
 
     private ShyGuySays _module;
     private Coroutine _executeQueue;
+    private Coroutine _loopQueue;
 
     private Queue<FlagAction> _queue = new Queue<FlagAction>();
 
@@ -22,16 +24,25 @@ public class FlagController : MonoBehaviour {
 
     private void Update() {
         if (_queue.Count > 0 && _executeQueue == null) {
-            _executeQueue = _module.StartCoroutine(ExecuteQueue());
+            _executeQueue = StartCoroutine(ExecuteQueue());
         }
     }
 
     public void Enqueue(FlagAction action, bool clearExistingActions = false) {
         if (clearExistingActions) {
-            _queue.Clear();
+            StopQueue();
         }
 
         _queue.Enqueue(action);
+    }
+
+    public void StopQueue() {
+        _queue.Clear();
+        if (_loopQueue != null) {
+            StopCoroutine(_loopQueue);
+        }
+        _flags[0].Unflip();
+        _flags[1].Unflip();
     }
 
     private IEnumerator ExecuteQueue() {
@@ -54,5 +65,24 @@ public class FlagController : MonoBehaviour {
         }
 
         _executeQueue = null;
+    }
+
+    public void EnqueueLoop(FlagAction[] actions, float waitTime) {
+        _loopQueue = StartCoroutine(LoopQueue(actions, waitTime));
+    }
+
+    private IEnumerator LoopQueue(FlagAction[] actions, float waitSeconds) {
+        StopQueue();
+        while (true) {
+            foreach (FlagAction action in actions) {
+                Enqueue(action);
+            }
+
+            while (_queue.Count() != 0) {
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(waitSeconds);
+        }
     }
 }

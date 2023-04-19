@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ShyGuySays : MonoBehaviour {
@@ -40,9 +41,8 @@ public class ShyGuySays : MonoBehaviour {
 
     private void FlagPress(int position) {
         string output;
-        foreach (FlagRaise raise in _stageGenerator.GenerateStage(1, out output)) {
-            _display.Enqueue(new FlagAction(1, raise));
-        }
+        FlagAction[] actions = _stageGenerator.GenerateStage(2, out output).Select(raise => new FlagAction(2, raise)).ToArray();
+        _display.EnqueueLoop(actions, 2);
     }
 
     private void FlagRelease(int position) {
@@ -50,12 +50,7 @@ public class ShyGuySays : MonoBehaviour {
     }
 
     private void CentrePress() {
-        var actions = new FlagRaise[] {
-            new FlagRaise(0, Color.green, 'A'),
-            new FlagRaise(1, Color.blue, 'B')
-        };
-
-        _display.Enqueue(new FlagAction(2, actions), clearExistingActions: true);
+        Strike("Bruh");
     }
 
     private void CentreRelease() {

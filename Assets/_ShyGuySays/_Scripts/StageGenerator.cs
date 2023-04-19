@@ -48,8 +48,19 @@ public class StageGenerator {
             int flagPosition = Rnd.Range(0, 2);
             int colourIndex = Rnd.Range(0, 4);
             int letterIndex = Rnd.Range(0, 4);
+
+            char newResponse = _flagCharts[flagPosition, letterIndex, colourIndex];
+
+            // Prevent the case where the player needs to skip all seven flags.
+            if (i == 6 && correctResponse.Replace("X", string.Empty).Length == 0) {
+                while (newResponse == 'X') {
+                    letterIndex += 1;
+                    newResponse = _flagCharts[flagPosition, letterIndex, colourIndex];
+                }
+            }
+
             displayFlags[i] = new FlagRaise(flagPosition, _colours[colourIndex], _letters[letterIndex]);
-            correctResponse += _flagCharts[flagPosition, letterIndex, colourIndex];
+            correctResponse += newResponse;
 
             logMessage = "The ";
             switch (i + 1) {
