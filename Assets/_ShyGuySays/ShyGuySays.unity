@@ -152,9 +152,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114505696753212356, guid: aafd80985b996b44fbef120d04d836a4,
+        type: 2}
+      propertyPath: _colourblindButton
+      value: 
+      objectReference: {fileID: 239919701}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aafd80985b996b44fbef120d04d836a4, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &239919701 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114170310454571640, guid: aafd80985b996b44fbef120d04d836a4,
+    type: 2}
+  m_PrefabInternal: {fileID: 123925734}
+  m_Script: {fileID: 1702003387, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
 --- !u!1 &305183886
 GameObject:
   m_ObjectHideFlags: 0
