@@ -14,7 +14,19 @@ MonoBehaviour:
   id: ShyGuySays
   title: Shy Guy Says
   author: Kuro
-  description: yea
-  version: 0.1
+  description: 'Hey, you''re not Simon!
+
+
+    Play a harder version of the Mario Party minigame, Shy Guy Says, to progress through
+    three stages.
+
+
+    Manual can be found at ktane.timwi.de or in the manuals folder of your game.
+
+
+    Manual by TheLuluBoyo#9307 on Discord.
+
+    Report bugs to Kuro#2011 on Discord.'
+  version: 1
   outputFolder: build
-  previewImage: {fileID: 0}
+  previewImage: {fileID: 2800000, guid: 7ee741cff19adbb40a58091f1c3d6c64, type: 3}
