@@ -9,10 +9,13 @@ public class FlagController : MonoBehaviour {
 
     [SerializeField] private KMSelectable _colourblindButton;
     [SerializeField] private MainFlag[] _flags;
+    [SerializeField] private TextMesh _cbTextLeft;
+    [SerializeField] private TextMesh _cbTextRight;
 
     private ShyGuySays _module;
     private Coroutine _executeQueue;
     private Coroutine _loopQueue;
+    private Coroutine _showCbModeState;
 
     private Queue<FlagAction> _queue = new Queue<FlagAction>();
 
@@ -24,8 +27,13 @@ public class FlagController : MonoBehaviour {
         }
 
         _colourblindButton.OnInteract += delegate () {
+            _module.Audio.PlaySoundAtTransform("Startup", _module.transform);
+            if (_showCbModeState != null) {
+                StopCoroutine(_showCbModeState);
+            }
             _flags[0].ColourblindModeActive = !_flags[0].ColourblindModeActive;
             _flags[1].ColourblindModeActive = !_flags[1].ColourblindModeActive;
+            _showCbModeState = StartCoroutine(ShowCbModeState(_flags[1].ColourblindModeActive));
             return false;
         };
     }
@@ -105,5 +113,15 @@ public class FlagController : MonoBehaviour {
 
             yield return new WaitForSeconds(waitSeconds);
         }
+    }
+
+    private IEnumerator ShowCbModeState(bool state) {
+        _cbTextLeft.text = "CB";
+        _cbTextRight.text = state ? "ON" : "OFF";
+
+        yield return new WaitForSeconds(2f);
+
+        _cbTextLeft.text = string.Empty;
+        _cbTextRight.text = string.Empty;
     }
 }
