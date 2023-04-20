@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Rnd = UnityEngine.Random;
 
 public class FlagController : MonoBehaviour {
 
@@ -63,6 +64,7 @@ public class FlagController : MonoBehaviour {
             foreach (FlagRaise raise in nextAction.Raises) {
                 _flags[raise.Position].Flip(raise.Colour, raise.Letter, nextAction.Speed);
             }
+            _module.Audio.PlaySoundAtTransform("Flag " + Rnd.Range(1, 4), _module.transform);
 
             yield return new WaitForSeconds(1 / (2 * nextAction.Speed));
 

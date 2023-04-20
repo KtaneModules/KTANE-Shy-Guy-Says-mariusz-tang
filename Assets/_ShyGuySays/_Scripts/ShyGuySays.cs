@@ -21,9 +21,14 @@ public class ShyGuySays : MonoBehaviour {
         new FlagRaise(0, Color.red, 'X'),
         new FlagRaise(1, Color.red, 'X')
     };
+    private readonly FlagRaise[] _okRaises = new FlagRaise[] {
+        new FlagRaise(0, Color.green, 'O'),
+        new FlagRaise(1, Color.green, 'K')
+    };
     private readonly string[] _positionNames = new string[] { "Left", "Right" };
 
     private StageGenerator _stageGenerator;
+    private Coroutine _timer;
 
     private int _stageNumber = 1;
     private bool _activeStage = false;
@@ -32,16 +37,15 @@ public class ShyGuySays : MonoBehaviour {
 
     private void Start() {
         _moduleId = _moduleIdCounter++;
+        Log("Press Shy Guy's mask to begin!");
         AssignInputHandlers();
         _stageGenerator = new StageGenerator(this);
     }
 
     private void AssignInputHandlers() {
         foreach (FlagButton button in _buttonFlags) {
-            button.GetComponent<KMSelectable>().OnInteractEnded += delegate () { FlagRelease(button.Position); };
             button.GetComponent<KMSelectable>().OnInteract += delegate () { FlagPress(button.Position); return false; };
         }
-        _centreButton.GetComponent<KMSelectable>().OnInteract += delegate () { CentrePress(); return false; };
         _centreButton.GetComponent<KMSelectable>().OnInteractEnded += delegate () { CentreRelease(); };
     }
 
@@ -53,7 +57,7 @@ public class ShyGuySays : MonoBehaviour {
             _actualInput += _positionNames[position][0];
         }
         else {
-            string strikeMessage = "Incorrectly responded with the " + _positionNames[position].ToLower() + " flag after " + _actualInput.Length + " correct response";
+            string strikeMessage = "Incorrectly responded with the " + _positionNames[position].ToLower() + " flag after " + _actualInput.Length + " correct response!";
             if (_actualInput.Length != 1) {
                 strikeMessage += "s";
             }
@@ -63,35 +67,41 @@ public class ShyGuySays : MonoBehaviour {
         }
 
         if (_actualInput == _expectedInput) {
-            Log("Responded with the correct flags.");
+            Log("Responded with the correct flags!");
             _display.StopQueue();
+            StopCoroutine(_timer);
             _stageNumber += 1;
             _activeStage = false;
+            _display.Enqueue(new FlagAction(1, _okRaises), clearExistingActions: true);
             if (_stageNumber == 4) {
+                Audio.PlaySoundAtTransform("Solve", transform);
                 Module.HandlePass();
             }
         }
     }
 
-    private void FlagRelease(int position) {
-
-    }
-
-    private void CentrePress() {
-
-    }
-
     private void CentreRelease() {
+        if (_stageNumber == 4) {
+            Audio.PlaySoundAtTransform("Flag " + Rnd.Range(1, 4), transform);
+            return;
+        }
         if (_activeStage) {
             return;
         }
+
+        if (_stageNumber == 1) {
+            Audio.PlaySoundAtTransform("Startup", transform);
+        }
+
         FlagAction[] actions = GenerateActions(_stageGenerator.GenerateStage(_stageNumber, out _expectedInput));
         _display.EnqueueLoop(actions, 4f / (_stageNumber * 1 + 1));
+
+        int time = 50 + _stageNumber * 10;
+        _timer = StartCoroutine(StartTimer(time));
+        Log("You have " + time + " seconds.");
         _actualInput = string.Empty;
         _activeStage = true;
     }
-
-
 
     public FlagAction[] GenerateActions(FlagRaise[] raises) {
         var actions = new FlagAction[7];
@@ -113,6 +123,19 @@ public class ShyGuySays : MonoBehaviour {
         }
 
         return actions;
+    }
+
+    private IEnumerator StartTimer(float timerSeconds) {
+        float elapsedTime = 0;
+        yield return null;
+
+        while (elapsedTime < timerSeconds) {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        Strike("Ran out of time!");
+        _activeStage = false;
     }
 
     public void Log(string message) {

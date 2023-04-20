@@ -152,63 +152,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4089839300356440, guid: aafd80985b996b44fbef120d04d836a4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4089839300356440, guid: aafd80985b996b44fbef120d04d836a4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4089839300356440, guid: aafd80985b996b44fbef120d04d836a4, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418302239070156, guid: aafd80985b996b44fbef120d04d836a4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418302239070156, guid: aafd80985b996b44fbef120d04d836a4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418302239070156, guid: aafd80985b996b44fbef120d04d836a4, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 114599010085831802, guid: aafd80985b996b44fbef120d04d836a4,
-        type: 2}
-      propertyPath: _colourblindButton
-      value: 
-      objectReference: {fileID: 780452009}
-    - target: {fileID: 114163872206607736, guid: aafd80985b996b44fbef120d04d836a4,
-        type: 2}
-      propertyPath: _letter
-      value: 
-      objectReference: {fileID: 1572887334}
-    - target: {fileID: 114163872206607736, guid: aafd80985b996b44fbef120d04d836a4,
-        type: 2}
-      propertyPath: _cbText
-      value: 
-      objectReference: {fileID: 1053278094}
-    - target: {fileID: 114930886512198432, guid: aafd80985b996b44fbef120d04d836a4,
-        type: 2}
-      propertyPath: _letter
-      value: 
-      objectReference: {fileID: 1496831373}
-    - target: {fileID: 114930886512198432, guid: aafd80985b996b44fbef120d04d836a4,
-        type: 2}
-      propertyPath: _cbText
-      value: 
-      objectReference: {fileID: 152159998}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aafd80985b996b44fbef120d04d836a4, type: 2}
   m_IsPrefabParent: 0
---- !u!102 &152159998 stripped
-TextMesh:
-  m_PrefabParentObject: {fileID: 102166030187865508, guid: aafd80985b996b44fbef120d04d836a4,
-    type: 2}
-  m_PrefabInternal: {fileID: 123925734}
 --- !u!1 &305183886
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,17 +220,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &780452009 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114170310454571640, guid: aafd80985b996b44fbef120d04d836a4,
-    type: 2}
-  m_PrefabInternal: {fileID: 123925734}
-  m_Script: {fileID: 1702003387, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
---- !u!102 &1053278094 stripped
-TextMesh:
-  m_PrefabParentObject: {fileID: 102800631779984908, guid: aafd80985b996b44fbef120d04d836a4,
-    type: 2}
-  m_PrefabInternal: {fileID: 123925734}
 --- !u!1001 &1414682198
 Prefab:
   m_ObjectHideFlags: 0
@@ -327,16 +262,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8814ea52310d2614a9feda02ec355ae4, type: 2}
   m_IsPrefabParent: 0
---- !u!102 &1496831373 stripped
-TextMesh:
-  m_PrefabParentObject: {fileID: 102105124459544218, guid: aafd80985b996b44fbef120d04d836a4,
-    type: 2}
-  m_PrefabInternal: {fileID: 123925734}
---- !u!102 &1572887334 stripped
-TextMesh:
-  m_PrefabParentObject: {fileID: 102737093745856112, guid: aafd80985b996b44fbef120d04d836a4,
-    type: 2}
-  m_PrefabInternal: {fileID: 123925734}
 --- !u!1 &1924126407
 GameObject:
   m_ObjectHideFlags: 0
