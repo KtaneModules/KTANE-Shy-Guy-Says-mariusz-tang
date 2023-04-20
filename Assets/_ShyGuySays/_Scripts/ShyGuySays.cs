@@ -65,6 +65,7 @@ public class ShyGuySays : MonoBehaviour {
             }
             strikeMessage += ".";
             Strike(strikeMessage);
+            Log("Press the Shy Guy to try again.");
             StopCoroutine(_timer);
             _activeStage = false;
         }
@@ -78,6 +79,8 @@ public class ShyGuySays : MonoBehaviour {
             _display.Enqueue(new FlagAction(1, _okRaises), clearExistingActions: true);
             if (_stageNumber == 4) {
                 Audio.PlaySoundAtTransform("Solve", transform);
+                Log("===================== Solved =====================");
+                Log("You win!");
                 Module.HandlePass();
             }
         }
@@ -141,6 +144,7 @@ public class ShyGuySays : MonoBehaviour {
         }
 
         Strike("Ran out of time!");
+        Log("Press the Shy Guy to try again.");
         _activeStage = false;
     }
 
