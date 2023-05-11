@@ -27,7 +27,7 @@ public class FlagController : MonoBehaviour {
         }
 
         _colourblindButton.OnInteract += delegate () {
-            _module.Audio.PlaySoundAtTransform("Startup", _module.transform);
+            _module.PlaySound("Startup");
             if (_showCbModeState != null) {
                 StopCoroutine(_showCbModeState);
             }
@@ -72,7 +72,7 @@ public class FlagController : MonoBehaviour {
             foreach (FlagRaise raise in nextAction.Raises) {
                 _flags[raise.Position].Flip(raise.Colour, raise.Letter, nextAction.Speed);
             }
-            _module.Audio.PlaySoundAtTransform("Flag " + Rnd.Range(1, 4), _module.transform);
+            _module.PlaySound("Flag " + Rnd.Range(1, 4));
 
             yield return new WaitForSeconds(1 / (2 * nextAction.Speed));
 

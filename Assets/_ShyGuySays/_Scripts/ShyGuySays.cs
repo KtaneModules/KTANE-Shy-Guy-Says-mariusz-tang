@@ -7,6 +7,7 @@ public class ShyGuySays : MonoBehaviour {
     public KMAudio Audio;
     public KMBombInfo Bomb;
     public KMBombModule Module;
+    private bool _isMuted = false;
 
     private static int _moduleIdCounter = 0;
     private int _moduleId;
@@ -86,15 +87,17 @@ public class ShyGuySays : MonoBehaviour {
 
     private void CentreRelease() {
         if (_stageNumber == 4) {
-            Audio.PlaySoundAtTransform("Flag " + Rnd.Range(1, 4), transform);
+            PlaySound("Flag " + Rnd.Range(1, 4));
             return;
         }
         if (_activeStage) {
+            // Toggle mute.
+            _isMuted = !_isMuted;
             return;
         }
 
         if (_stageNumber == 1) {
-            Audio.PlaySoundAtTransform("Startup", transform);
+            PlaySound("Startup");
         }
 
         FlagAction[] actions = GenerateActions(_stageGenerator.GenerateStage(_stageNumber, out _expectedInput));
@@ -154,6 +157,12 @@ public class ShyGuySays : MonoBehaviour {
         Module.HandleStrike();
         Log("✕ " + message);
         _display.Enqueue(new FlagAction(1, _strikeRaises), clearExistingActions: true);
+    }
+
+    public void PlaySound(string soundName) {
+        if (!_isMuted) {
+            Audio.PlaySoundAtTransform(soundName, transform);
+        }
     }
 
 #pragma warning disable 414
