@@ -36,6 +36,11 @@ public class FlagController : MonoBehaviour {
             _showCbModeState = StartCoroutine(ShowCbModeState(_flags[1].ColourblindModeActive));
             return false;
         };
+
+        if (_module.GetComponent<KMColorblindMode>().ColorblindModeActive) {
+            _flags[0].ColourblindModeActive = true;
+            _flags[1].ColourblindModeActive = true;
+        }
     }
 
     private void Update() {

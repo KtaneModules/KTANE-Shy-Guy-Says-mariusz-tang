@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 114427609278980286}
   - component: {fileID: 114076272244660302}
   - component: {fileID: 114237434278325614}
+  - component: {fileID: 114825690870266328}
   - component: {fileID: 114505696753212356}
   m_Layer: 0
   m_Name: ShyGuySays
@@ -2350,6 +2351,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text Diffuse
+--- !u!114 &114825690870266328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669178498748364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cfb889a07d5fd4e9baed7960bb397f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorblindMode: 0
 --- !u!114 &114829852700598256
 MonoBehaviour:
   m_ObjectHideFlags: 1
