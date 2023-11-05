@@ -36,7 +36,6 @@ public class MainFlag : MonoBehaviour {
     }
 
     public void Flip(Color colour, char letter) {
-        Ready = false;
         _displaySide.materials[1].color = colour;
         _letter.color = colour == Color.white ? Color.white * 0.5f : Color.white;
         _letter.text = letter.ToString();
@@ -81,7 +80,11 @@ public class MainFlag : MonoBehaviour {
         }
     }
 
+    // Animation events
     public void SetReady() {
         Ready = true;
+    }
+    public void SetNotReady() {
+        Ready = false;
     }
 }
